@@ -30,12 +30,12 @@ EXPOSE 4242
 
 #Install Supervisord
 RUN mkdir -p /var/log/supervisor
-ADD supervisor-hbase.conf /etc/supervisor/conf.d/hbase.conf
-ADD supervisor-system.conf /etc/supervisor/conf.d/system.conf
-ADD supervisor-tsdb.conf /etc/supervisor/conf.d/tsdb.conf
+ADD supervisor-hbase.ini /etc/supervisor.d/hbase.ini
+ADD supervisor-system.ini /etc/supervisor.d/system.ini
+ADD supervisor-tsdb.ini /etc/supervisor.d/tsdb.ini
 
 #Configure SSHD properly
-ADD supervisor-sshd.conf /etc/supervisor/conf.d/sshd.conf
+ADD supervisor-sshd.conf /etc/supervisor.d/sshd.ini
 RUN mkdir -p /root/.ssh
 RUN chmod 0600 /root/.ssh
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g; s/#UsePAM no/UsePAM no/g;' /etc/ssh/sshd_config
@@ -45,5 +45,5 @@ RUN chmod 0744 /var/run/sshd
 ADD create_ssh_key.sh /opt/sei-bin/
 
 
-CMD ["/usr/bin/supervisord","-c", "/etc/supervisord.conf"]
+CMD ["/usr/bin/supervisord","-d","/etc/","-c", "/etc/supervisord.conf"]
 
