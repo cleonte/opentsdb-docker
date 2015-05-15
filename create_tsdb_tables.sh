@@ -3,7 +3,7 @@
 
 export COMPRESSION="NONE"
 export HBASE_HOME=/opt/hbase
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk
 
 cd /opt/opentsdb
 ./src/create_table.sh
