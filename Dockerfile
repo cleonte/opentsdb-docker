@@ -35,7 +35,7 @@ ADD supervisor-system.ini /etc/supervisord.d/system.ini
 ADD supervisor-tsdb.ini /etc/supervisord.d/tsdb.ini
 
 #Configure SSHD properly
-ADD supervisor-sshd.conf /etc/supervisord.d/sshd.ini
+ADD supervisor-sshd.ini /etc/supervisord.d/sshd.ini
 RUN mkdir -p /root/.ssh
 RUN chmod 0600 /root/.ssh
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g; s/#UsePAM no/UsePAM no/g;' /etc/ssh/sshd_config
@@ -45,5 +45,4 @@ RUN chmod 0744 /var/run/sshd
 ADD create_ssh_key.sh /opt/sei-bin/
 
 
-CMD ["/usr/bin/supervisord","-d","/etc/","-c", "/etc/supervisord.conf"]
-
+#CMD ["/usr/bin/supervisord","-d","/etc/","-c", "/etc/supervisord.conf"]
