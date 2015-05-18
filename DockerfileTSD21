@@ -22,7 +22,7 @@ EXPOSE 60010
 EXPOSE 60030
 
 #Install OpenTSDB and scripts
-RUN git clone -b tts_maintenance_v1.1.0 --single-branch https://github.com/toraTSD/opentsdb.git /opt/opentsdb
+RUN git clone -b tts_maintenance_v2.1.0 --single-branch https://github.com/toraTSD/opentsdb.git /opt/opentsdb
 RUN cd /opt/opentsdb && bash ./build.sh
 ADD start_opentsdb.sh /opt/sei-bin/
 ADD create_tsdb_tables.sh /opt/sei-bin/
