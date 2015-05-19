@@ -4,16 +4,16 @@ FROM centos:centos7
 MAINTAINER Cristian Leonte <cristian.leonte@gmail.com>
 RUN yum -y -q update
 RUN yum -y -q install epel-release  &&  yum -y -q install \
-    curl \
-    git  \
-    python \
-    java-1.7.0-openjdk-devel \
-    supervisor \
-    automake \
-    gnuplot \
-    unzip \
-    tar\
-    make
+   automake \
+   curl \
+   git  \
+   gnuplot \
+   java-1.7.0-openjdk-devel \
+   make \
+   python \
+   supervisor \
+   tar\
+   unzip \
 
 RUN mkdir -p /opt/sei-bin/
 
