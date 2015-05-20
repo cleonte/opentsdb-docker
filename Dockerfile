@@ -2,8 +2,8 @@
 
 FROM centos:centos7
 MAINTAINER Cristian Leonte <cristian.leonte@gmail.com>
-RUN yum -y -q update
-RUN yum -y -q install epel-release  &&  yum -y -q install \
+#RUN yum -y -q update
+RUN yum -y clean all && yum -y install epel-release  &&  yum -y install \
     automake \
     curl \
     git  \
@@ -13,8 +13,8 @@ RUN yum -y -q install epel-release  &&  yum -y -q install \
     python \
     supervisor \
     tar\
-    unzip \
-
+    unzip
+RUN ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN mkdir -p /opt/sei-bin/
 
 #Install HBase and scripts
@@ -22,7 +22,7 @@ RUN mkdir -p /data/hbase
 
 WORKDIR /opt
 ADD http://apache.org/dist/hbase/hbase-0.94.27/hbase-0.94.27.tar.gz /opt/downloads/
-RUN tar xzvf /opt/downloads/hbase-*gz && rm /opt/downloads/hbase-*gz
+RUN tar xzf /opt/downloads/hbase-*gz && rm /opt/downloads/hbase-*gz
 RUN ["/bin/bash","-c","mv hbase-* /opt/hbase"]
 ADD start_hbase.sh /opt/sei-bin/
 ADD hbase-site.xml /opt/hbase/conf/
